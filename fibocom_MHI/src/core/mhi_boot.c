@@ -365,7 +365,7 @@ static int mhi_fw_load_amss(struct mhi_controller *mhi_cntrl,
 
 	mhi_write_reg(mhi_cntrl, base, BHIE_TXVECSIZE_OFFS, mhi_buf->len);
 
-	mhi_cntrl->sequence_id = prandom_u32() & BHIE_TXVECSTATUS_SEQNUM_BMSK;
+	mhi_cntrl->sequence_id = get_random_u32() & BHIE_TXVECSTATUS_SEQNUM_BMSK;
 	mhi_write_reg_field(mhi_cntrl, base, BHIE_TXVECDB_OFFS,
 			    BHIE_TXVECDB_SEQNUM_BMSK, BHIE_TXVECDB_SEQNUM_SHFT,
 			    mhi_cntrl->sequence_id);
@@ -430,7 +430,7 @@ static int mhi_fw_load_sbl(struct mhi_controller *mhi_cntrl,
 	mhi_write_reg(mhi_cntrl, base, BHI_IMGADDR_HIGH, upper_32_bits(phys));
 	mhi_write_reg(mhi_cntrl, base, BHI_IMGADDR_LOW, lower_32_bits(phys));
 	mhi_write_reg(mhi_cntrl, base, BHI_IMGSIZE, size);
-	mhi_cntrl->session_id = prandom_u32() & BHI_TXDB_SEQNUM_BMSK;
+	mhi_cntrl->session_id = get_random_u32() & BHI_TXDB_SEQNUM_BMSK;
 	mhi_write_reg(mhi_cntrl, base, BHI_IMGTXDB, mhi_cntrl->session_id);
 	read_unlock_bh(pm_lock);
 
