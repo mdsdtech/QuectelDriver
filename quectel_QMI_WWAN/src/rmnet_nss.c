@@ -366,8 +366,7 @@ int rmnet_nss_create_vnd(struct net_device *dev)
 		return -ENOMEM;
 
 	ctx->rmnet_dev = dev;
-	ctx->nss_ctx = nss_rmnet_rx_create_sync_nexthop(dev, NSS_N2H_INTERFACE,
-						       NSS_C2C_TX_INTERFACE);
+	ctx->nss_ctx = nss_rmnet_rx_create_sync_nexthop(dev, NSS_N2H_INTERFACE, NSS_C2C_TX_INTERFACE);
 	if (!ctx->nss_ctx) {
 		kfree(ctx);
 		return -1;
